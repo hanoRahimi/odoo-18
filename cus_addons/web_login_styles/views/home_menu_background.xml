@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+        <template id="assets_frontend" name="custom home menu background" inherit_id="web_login_styles.assets_frontend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/scss" href="/web_login_styles/static/src/scss/home_menu_background.scss"/>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

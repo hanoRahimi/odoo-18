@@ -1,0 +1,7 @@
+<odoo>
+  <template id="custom_login_layout" inherit_id="web.login_layout">
+    <xpath expr="//t[@t-set='body_classname']" position="replace">
+      <t t-set="body_classname" t-value="'my-login-bg'" />
+    </xpath>
+  </template>
+</odoo>
