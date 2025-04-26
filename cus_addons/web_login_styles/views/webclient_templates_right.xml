@@ -8,7 +8,6 @@
             <t t-set="no_footer" t-value="True"/>
 
             <style>
-                
                 .card {
                     position: absolute;
                     top: 45%;
@@ -32,7 +31,7 @@
                     <div class="container py-5">
                         <div t-attf-class="card border-0 mx-auto bg-100 {{login_card_classes}} o_database_list"
                              style="max-width: 300px; float: right; position: absolute; top: 50%; transform: translateY(-50%);">
-                            <div class="card-body" style="background: rgba(12, 37, 83, 0.2); border-radius: 10px;">
+                            <div class="card-body" style="background: hsla(216, 90.90%, 34.50%, 0.81); border-radius: 10px;">
                                 <div t-attf-class="text-center pb-3 border-bottom {{'mb-3' if form_small else 'mb-4'}}">
                                     <img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}"
                                          alt="Logo"
@@ -72,9 +71,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group field-login">
-                                        <label for="login">Email</label>
+                                        <label for="login"></label>
+                                        
                                         <input type="text"
-                                               placeholder="Email"
+                                               placeholder="نام کاربری"
                                                name="login"
                                                t-att-value="login"
                                                id="login"
@@ -84,10 +84,9 @@
                                                autocapitalize="off"/>
                                     </div>
                                     <div class="form-group field-password">
-                                        <label for="password">Password
-                                        </label>
+                                        <label for="password"></label>
                                         <input type="password"
-                                               placeholder="Password"
+                                               placeholder="رمز عبور"
                                                name="password"
                                                id="password"
                                                t-attf-class="form-control #{'form-control-sm' if form_small else ''}"
@@ -130,11 +129,11 @@
                                             Databases
                                         </a>
                                     </t>
-                                    <a href="https://www.odoo.com?utm_source=db&amp;utm_medium=auth"
+                                    <!-- <a href="https://www.odoo.com?utm_source=db&amp;utm_medium=auth"
                                        target="_blank">
                                         Powered by
                                         <span>Odoo</span>
-                                    </a>
+                                    </a> -->
                                 </div>
                             </div>
                         </div>

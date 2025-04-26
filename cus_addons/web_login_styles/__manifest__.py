@@ -36,13 +36,7 @@
         'views/webclient_templates_right.xml',
         'views/webclient_templates_left.xml',
         'views/webclient_templates_middle.xml',
-        # 'views/home_menu_background.xml',
     ],
-    'assets': {
-    'web.assets_frontend': [
-        '/web_login_styles/static/src/scss/home_menu_background.scss',
-    ],
-},
     'images': ['static/description/banner.png'],
     'license': 'LGPL-3',
     'installable': True,
