@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+  <t t-inherit="web.NavBar" t-inherit-mode="extension">
+    <xpath expr="//header[@class='o_navbar']" position="attributes">
+      <attribute name="style">background-color: white;</attribute>
+    </xpath>
+  </t>
+</templates>

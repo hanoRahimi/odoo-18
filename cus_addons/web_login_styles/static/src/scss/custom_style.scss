@@ -1,0 +1,9 @@
+.o_home_menu_background, .o_web_client.o_home_menu_background {
+    background: {
+        size: cover;
+        attachment: fixed;
+        color: var(--homeMenu-bg-color, #f0f8ff); 
+        image: var(--homeMenu-bg-image, url('cus_addons/web_login_styles/static/src/img/background-home.png'));
+    }
+}
+

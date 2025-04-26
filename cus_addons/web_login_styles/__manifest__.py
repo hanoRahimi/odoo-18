@@ -37,6 +37,12 @@
         'views/webclient_templates_left.xml',
         'views/webclient_templates_middle.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'web_login_styles/static/src/scss/custom_style.scss',
+            # 'web_login_styles/views/navbar_inherit.xml',
+        ],
+    },
     'images': ['static/description/banner.png'],
     'license': 'LGPL-3',
     'installable': True,
