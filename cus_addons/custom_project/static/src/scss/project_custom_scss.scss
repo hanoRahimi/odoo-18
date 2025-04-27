@@ -1,0 +1,84 @@
+.o_field_statusbar {
+    $-btn-secondary-design: map-get($o-btns-bs-override, "secondary");
+
+    > .o_statusbar_status {
+        display: flex;
+        align-content: space-around;
+        margin-left: auto;
+        flex-flow: row-reverse wrap-reverse;
+        align-self: stretch;
+        align-items: stretch;
+
+        --o-statusbar-radius: 0.1rem;
+        --o-statusbar-border: #{$o-view-background-color};
+        --o-statusbar-background-active: #{map-get($-btn-secondary-design, active-background)};
+        --o-statusbar-border-active: #{map-get($-btn-secondary-design, active-border)};
+        --o-statusbar-background-hover: #{map-get($-btn-secondary-design, hover-background)};
+        --o-statusbar-caret-width: #{$o-statusbar-arrow-width};
+        --o-statusbar-border-width: #{$btn-border-width};
+        --o-statusbar-padding-x: calc(var(--o-statusbar-caret-width) * 1.25);
+        --o-statusbar-padding-y: calc(#{$btn-padding-y} + #{$btn-border-width});
+
+        > .o_arrow_button:not(.d-none) {
+            position: relative;
+            padding: var(--o-statusbar-padding-y) calc(var(--o-statusbar-padding-x) * 1.375);
+            border: 0;
+            clip-path: none !important;
+            margin-left: 0;
+
+            border-radius: 8px !important;
+            background-color: #f7fbfc !important;
+            border: 1px solid #f7fbfc !important;
+            color: #333 !important;
+            font-size: 14px !important;
+            text-align: center !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            &.o_arrow_button_current {
+                background-color: #1a8eca !important;
+                color: white !important;
+            }
+
+            &:disabled {
+                background-color: #1a8eca !important;
+                color: white !important;
+                cursor: not-allowed !important;
+            }
+
+            &:hover, &:focus {
+                background-color: var(--o-statusbar-background-hover);
+            }
+
+            &:active:not(.o_last) {
+                z-index: 1;
+                background-color: var(--o-statusbar-background-active);
+            }
+
+            &::after {
+                content: none !important;
+            }
+
+            &::before {
+                content: none !important;
+            }
+
+            &.o_last::before,
+            &.o_first::before {
+                border-radius: var(--o-statusbar-radius);
+            }
+        }
+    }
+}
+
+.o_cell {
+    .o_field_statusbar {
+        > .o_statusbar_status {
+            justify-content: flex-end;
+            .o_arrow_button:not(.d-none) {
+                flex: 1 1 auto !important;
+            }
+        }
+    }
+}

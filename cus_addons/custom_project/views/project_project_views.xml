@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="custom_edit_project_form" model="ir.ui.view">
+        <field name="name">custom.project.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_open_share_project_wizard']" position="replace">
+                <button name="action_open_share_project_wizard" 
+                        string="اشتراک پروژه" 
+                        type="object" 
+                        class="oe_highlight btn-primary share-project-button" 
+                        invisible="privacy_visibility != 'portal'" 
+                        context="{'default_access_mode': 'read'}" 
+                        data-hotkey="r">
+                    <i class="fa fa-share-alt" role="img" aria-label="new project"/>   اشتراک پروژه
+                </button>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_project_approval" 
+                        string="تصویب پروژه" 
+                        type="object" 
+                        class="oe_highlight btn-primary share-project-button" 
+                        invisible="privacy_visibility != 'portal'" 
+                        context="{'default_access_mode': 'read'}" 
+                        data-hotkey="r">
+                    <i class="fa fa-check-circle-o" role="img" aria-label="new project"/>   تصویب پروژه
+                </button>
+            </xpath>
+            <!-- <xpath expr="//field[@name='label_tasks']" position="before">
+                <field name="task_completion_percentage" 
+                       string="درصد پیشرفت پروژه" 
+                       widget="progressbar" 
+                       options="{'digits': [1, 0]}" 
+                       attrs="{'class': 'o_progressbar'}"/>
+            </xpath> -->
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="budget" />
+            </xpath>
+            <xpath expr="//field[@name='date_start']" position="after">
+                <field name="task_completion_percentage" string="درصد پیشرفت پروژه" widget="percentage" options="{'digits': [1, 0]}"/>
+                <!-- <field name="progres" /> -->
+                <field name="approval_code" />
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="string">شرکت</attribute>
+            </xpath>
+            <xpath expr="//page[@name='description']" position="attributes">
+                <attribute name="string">شرح پروژه</attribute>
+            </xpath>
+            <xpath expr="//page[@name='settings']" position="after">
+                <page name="sale_factor" string="فاکتور فروش">
+                    
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
