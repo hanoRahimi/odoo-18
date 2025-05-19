@@ -24,17 +24,12 @@
                         class="oe_highlight btn-primary share-project-button" 
                         invisible="privacy_visibility != 'portal'" 
                         context="{'default_access_mode': 'read'}" 
+                        confirm="پس از تصویب پروژه، کدی یکتای تصویب به پروژه اختصاص می‌یابد. آیا مطمئن هستید؟"
                         data-hotkey="r">
                     <i class="fa fa-check-circle-o" role="img" aria-label="new project"/>   تصویب پروژه
                 </button>
             </xpath>
-            <!-- <xpath expr="//field[@name='label_tasks']" position="before">
-                <field name="task_completion_percentage" 
-                       string="درصد پیشرفت پروژه" 
-                       widget="progressbar" 
-                       options="{'digits': [1, 0]}" 
-                       attrs="{'class': 'o_progressbar'}"/>
-            </xpath> -->
+            
             <xpath expr="//field[@name='tag_ids']" position="after">
                 <field name="budget" />
             </xpath>
@@ -56,4 +51,64 @@
             </xpath>
         </field>
     </record>
+
+    <record id="view_project_kanban_inherit" model="ir.ui.view">
+        <field name="name">project.project.kanban.inherit.company</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project_kanban"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//span[@name='partner_name']" position="replace">
+                <span name="user_name" class="text-muted d-flex align-items-baseline" t-if="record.user_id.value">
+                    <span class="fa fa-user me-2" aria-label="User" title="User"></span>
+                    <field class="text-truncate" name="user_id"/>
+                </span>
+            </xpath>
+            
+            <xpath expr="//span[@name='user_name']" position="after">
+                <div class="text-muted d-flex align-items-center" style="font-size: 12px; margin-top: 5px;">
+                    <span class="fa fa-clock-o me-2"></span>
+                    <field name="create_date_only" widget="date" options="{'no_create': True}"/>
+                </div>
+            </xpath>
+
+            <xpath expr="//field[@name='tag_ids']" position="before">
+                <div class="d-flex align-items-center mb-1">
+                <i t-if="record.approval_code and record.approval_code.value" class="fa fa-check me-2 oe_read_only"/>
+                    <field name="approval_code"/>
+                </div>
+                <div class="d-flex align-items-center mb-1">
+                    <i t-if="record.partner_id and record.partner_id.value" class="fa fa-building-o me-2 oe_read_only"/>
+                    <field name="partner_id"/>
+                </div>
+            </xpath>
+
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <div class="d-flex align-items-center mb-1">
+                    <field name="task_completion_percentage" widget="percentage" options="{'digits': [1, 0]}" class="o_field_number"/>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="inherit_list_project_view" model="ir.ui.view">
+        <field name="name">inherit.list.project.view.list</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='stage_id']" position="after">
+                <field name="approval_code" />
+                <field name="task_completion_percentage" string="درصد پیشرفت" widget="percentage" />
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
+            </xpath>
+            <xpath expr="//button[@name='action_view_tasks']" position="attributes">
+                <attribute name="string">فعالیت ها</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="string">شرکت</attribute>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

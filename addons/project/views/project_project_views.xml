@@ -396,7 +396,7 @@
                                             <span>View</span>
                                         </h5>
                                         <div role="menuitem">
-                                            <a name="action_view_tasks" type="object">Tasks</a>
+                                            <a name="action_view_tasks" type="object">وظیفه‌ها</a>
                                         </div>
                                         <div role="menuitem" groups="project.group_project_milestone" t-if="record.allow_milestones.raw_value">
                                             <a name="action_get_list_view" type="object">Milestones</a>
