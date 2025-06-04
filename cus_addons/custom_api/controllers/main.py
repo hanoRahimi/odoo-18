@@ -1,96 +1,95 @@
 from odoo import http
-from odoo.http import request
+from odoo.http import request, Response
 import json
-
-# Html Snippets, Gitlens-git supercharged, Html Css Support, Live Server, Lorem ipsum, odoo IDE, Odoo Snippets, Pylance, python, python debugger, rainbow csv, thunder client
+import re
 
 class ProjectAPIController(http.Controller):
-
-    @http.route(['/api/projects'], auth='public', type='json', csrf=False)
+    
+    # ----------------  پروژه -----------------
+    @http.route('/api/projects', auth='user', type='json', csrf=False, methods=['POST'])
     def get_projects(self, **kwargs):
+        def clean_html(raw_html):
+            clean_text = re.sub('<[^<]+?>', '', raw_html or "")
+            return clean_text.strip()
+
         projects = request.env['project.project'].sudo().search([])
         data = []
         for project in projects:
             data.append({
-                'name':project.name,
-                'create_date': project.create_date,
-                'date_start': project.date_start,
-                'description': project.description,
+                'id': project.id,
+                'name': project.name,
+                'create_date': str(project.create_date),
+                'date_start_schedule': str(project.date_start),
+                'date_end_schedule': str(project.date),
+                'description': clean_html(project.description),
+                'progres_actual': project.task_completion_percentage,
+                'approval_code': project.x_approval_code,
+                'budget': project.budget,
                 'company': project.partner_id.name,
-                'tags':project.tag_ids,
-                'approval_code': project.approval_code,
-                'user_id': project.user_id.name,
-
+                'tags': [tag.name for tag in project.tag_ids],
+                'user_id': project.user_id.id,
+                'user_name': project.user_id.name,
             })
         return data
 
-        # projects = request.env['project.project'].search([])
-
-        # data = []
-        # for project in projects:
-        #     data.append({
-        #         'id': project.id,
-        #         'name': project.name,
-        #         'user_id': project.user_id.name if project.user_id else None,
-        #         'date_start': project.date_start,
-        #         'date_end': project.date,
-        #         'tasks_count': len(project.task_ids),
-        #     })
-
-        # return {
-        #     'status': 200,
-        #     'message': 'Projects fetched successfully',
-        #     'data': data
-        # }
 
     # -------------- فعالیت‌های پروژه ---------------
-    @http.route('/api/project_activities', auth='user', methods=['GET'], type='json')
+    @http.route('/api/activities', auth='user', methods=['POST'], type='json', csrf=False)
     def get_activities(self, **kwargs):
-        activities = request.env['mail.activity'].search([])
+        activity_task = request.env['project.task'].sudo().search([])
         result = []
-        for a in activities:
+        for task in activity_task:
             result.append({
-                'id': a.id,
-                'summary': a.summary,
-                'deadline': a.date_deadline,
-                'user_id': a.user_id.id if a.user_id else False,
-                'tags': [tag.name for tag in a.tag_ids] if hasattr(a, 'tag_ids') else [],
-                'planned_start_date': a.date_deadline, 
-                'planned_end_date': a.date_deadline,
-                'actual_start_date': None,
-                'actual_end_date': None, 
-                'progress': None,        
-                'planned_budget': None, 
+                'id': task.id,
+                'name': task.name,
+                'project_id': task.project_id.id,
+                'project_name': task.project_id.name,
+                'date_deadline': str(task.date_deadline) if task.date_deadline else None,
+                'user_ids': task.user_ids.ids,
+                'tag_ids': [tag.name for tag in task.tag_ids],
+                'start_date_schedule': str(task.x_scheduled_start_date) if task.x_scheduled_start_date else None,
+                'end_date_schedule': str(task.x_scheduled_end_date) if task.x_scheduled_end_date else None,
+                'start_date_actual': str(task.x_actual_start_date) if task.x_actual_start_date else None,
+                'end_date_actual': str(task.x_actual_end_date) if task.x_actual_end_date else None,
+                'progres': task.x_activity_progress,
+                'budget': task.x_budget_ceiling,
             })
         return result
 
     # -------------- زیر وظایف (Task) ---------------
-    @http.route('/api/subtasks', auth='user', methods=['GET'], type='json')
+    @http.route('/api/subtasks', auth='user', methods=['POST'], type='json', csrf=False)
     def get_subtasks(self, **kwargs):
         subtasks = request.env['project.task'].search([('parent_id', '!=', False)])
         result = []
-        for t in subtasks:
+        for sub in subtasks:
             result.append({
-                'id': t.id,
-                'name': t.name,
-                'deadline': t.date_deadline,
-                'project_id': t.project_id.id if t.project_id else False,
-                'user_id': t.user_id.id if t.user_id else False,
-                'tags': [tag.name for tag in t.tag_ids],
+                'id': sub.id,
+                'name': sub.name,
+                'deadline': sub.date_deadline,
+                'project_parent_id': sub.parent_id.id,
+                'project_parent_name': sub.parent_id.name,
+                'user_id': sub.user_ids.ids,
+                'tags': [tag.name for tag in sub.tag_ids],
             })
         return result
 
     # -------------- کاربران ---------------
-    @http.route('/api/users', auth='user', methods=['GET'], type='json')
+    @http.route('/api/users', auth='user', type='json', methods=['POST'], csrf=False)
     def get_users(self, **kwargs):
-        users = request.env['res.users'].search([])
+        users = request.env['res.users'].sudo().search([])
         result = []
         for u in users:
             result.append({
-                'id': u.id,
                 'name': u.name,
+                'id': u.id,
                 'login': u.login,
                 'company_id': u.company_id.id if u.company_id else False,
                 'email': u.email,
             })
         return result
+
+
+
+
+
+    
