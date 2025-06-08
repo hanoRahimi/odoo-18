@@ -95,13 +95,14 @@ export class BurndownChartSearchModel extends SearchModel {
     }
 
     /**
-     * Adds a notification related to the group by constraint of the Burndown Chart.
-     * @param body The message to display in the notification.
+     * Adds a notification relative to the group by constraint of the Burndown Chart.
+     * @param fieldName The field name(s) the notification has to be related to.
      * @private
      */
     _addGroupByNotification(body) {
+        const notif = _t(body);
         this.notificationService.add(
-            body,
+            `${notif}`,
             { type: "danger" }
         );
     }

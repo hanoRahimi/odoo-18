@@ -34,6 +34,8 @@
         'wizard/project_share_wizard_views.xml',
         'views/project_task_type_views.xml',
         'views/project_project_views.xml',
+        'views/extended_project_views.xml',
+        'views/extended_project_approval_wizard_views.xml',
         'views/project_task_views.xml',
         'views/project_tags_views.xml',
         'views/project_milestone_views.xml',
@@ -63,7 +65,6 @@
     'installable': True,
     'application': True,
     'post_init_hook': '_project_post_init',
-    'uninstall_hook': '_project_uninstall_hook',
     'assets': {
         'web.assets_backend': [
             'project/static/src/css/project.css',

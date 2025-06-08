@@ -8,8 +8,8 @@ export class TaskListRenderer extends ListRenderer {
         super.setup();
         this.dialog = useService("dialog");
         useEffect(
-            (editedRecord) => this.focusName(editedRecord),
-            () => [this.editedRecord]
+            () => this.focusName(this.props.list.editedRecord),
+            () => [this.props.list.editedRecord]
         );
     }
 

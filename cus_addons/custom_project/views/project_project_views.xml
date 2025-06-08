@@ -17,26 +17,18 @@
                     <i class="fa fa-share-alt" role="img" aria-label="new project"/>   اشتراک پروژه
                 </button>
             </xpath>
-            <xpath expr="//header" position="inside">
-                <button name="action_project_approval" 
-                        string="تصویب پروژه" 
-                        type="object" 
-                        class="oe_highlight btn-primary share-project-button" 
-                        invisible="privacy_visibility != 'portal'" 
-                        context="{'default_access_mode': 'read'}" 
-                        confirm="پس از تصویب پروژه، کدی یکتای تصویب به پروژه اختصاص می‌یابد. آیا مطمئن هستید؟"
-                        data-hotkey="r">
-                    <i class="fa fa-check-circle-o" role="img" aria-label="new project"/>   تصویب پروژه
-                </button>
-            </xpath>
+
+            <!-- <xpath expr="//chatter" position="attributes">
+                <attribute name="style">min-height: 300px; max-height: 400px; overflow-y: auto; padding-bottom: 1rem; max-width: 400px;</attribute>
+            </xpath> -->
             
             <xpath expr="//field[@name='tag_ids']" position="after">
                 <field name="budget" />
             </xpath>
-            <xpath expr="//field[@name='date_start']" position="after">
+            <xpath expr="//field[@name='date']" position="after">
                 <field name="task_completion_percentage" string="درصد پیشرفت پروژه" widget="percentage" options="{'digits': [1, 0]}"/>
                 <!-- <field name="progres" /> -->
-                <field name="approval_code" />
+                <!-- <field name="display_approvalCode" /> -->                            
             </xpath>
             <xpath expr="//field[@name='partner_id']" position="attributes">
                 <attribute name="string">شرکت</attribute>
@@ -74,8 +66,8 @@
 
             <xpath expr="//field[@name='tag_ids']" position="before">
                 <div class="d-flex align-items-center mb-1">
-                <i t-if="record.approval_code and record.approval_code.value" class="fa fa-check me-2 oe_read_only"/>
-                    <field name="approval_code"/>
+                <i t-if="record.display_approvalCode and record.display_approvalCode.value" class="fa fa-check me-2 oe_read_only"/>
+                    <field name="display_approvalCode"/>
                 </div>
                 <div class="d-flex align-items-center mb-1">
                     <i t-if="record.partner_id and record.partner_id.value" class="fa fa-building-o me-2 oe_read_only"/>
@@ -97,9 +89,10 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.view_project" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='stage_id']" position="after">
-                <field name="approval_code" />
-                <field name="task_completion_percentage" string="درصد پیشرفت" widget="percentage" />
+            <xpath expr="//button[@name='action_view_tasks']" position="before">
+                <field name="display_approvalCode" />
+                <field name="task_completion_percentage" string="درصد پیشرفت واقعی" widget="percentage" />
+                <field name="planned_progress" string="درصد پیشرفت برنامه ای" widget="percentage" />
                 <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
             </xpath>
             <xpath expr="//button[@name='action_view_tasks']" position="attributes">

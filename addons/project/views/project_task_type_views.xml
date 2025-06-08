@@ -40,6 +40,9 @@
                                 </div>
                                 <field name="auto_validation_state" invisible="not rating_template_id" groups="project.group_project_rating"/>
                                 <field name="sequence" groups="base.group_no_one"/>
+                                <!-- <field name="x_weight"/>
+                                <field name="x_importance"/> -->
+                                <field name="x_weight"/> <!--by rh-->
                             </group>
                             <group>
                                 <field name="fold"/>

@@ -4,14 +4,15 @@ import { registry } from "@web/core/registry";
 import { stepUtils } from "@web_tour/tour_service/tour_utils";
 
 registry.category("web_tour.tours").add('burndown_chart_tour', {
+    test: true,
     url: '/odoo',
     steps: () => [stepUtils.showAppsMenuItem(), {
     trigger: '.o_app[data-menu-xmlid="project.menu_main_pm"]',
     run: "click",
 }, {
     content: 'Open "Burndown Chart Test" project menu',
-            trigger: ".o_kanban_record:contains(Burndown Chart Test)",
-    run: `hover && click .o_kanban_record:contains(Burndown Chart Test) .o_dropdown_kanban .dropdown-toggle`,
+    trigger: '.o_kanban_record:contains("Burndown Chart Test") .o_dropdown_kanban .dropdown-toggle',
+    run: "click",
 }, {
     content: `Open "Burndown Chart Test" project's "Burndown Chart" view`,
     trigger: '.o_kanban_manage_reporting div[role="menuitem"] a:contains("Burndown Chart")',
@@ -26,8 +27,8 @@ registry.category("web_tour.tours").add('burndown_chart_tour', {
     run: "click",
 }, {
     content: 'Remove the project search "Burndown Chart Test"',
-    trigger: ".o_searchview_facet:contains(Burndown Chart Test)",
-    run: "hover && click .o_facet_remove",
+    trigger: '.o_searchview_facet:contains("Burndown Chart Test") .o_facet_remove',
+    run: "click",
 }, {
     content: 'Search Burndown Chart',
     trigger: 'input.o_searchview_input',

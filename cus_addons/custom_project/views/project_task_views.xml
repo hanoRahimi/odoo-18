@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="custom_view_task_kanban">
+        <field name="name">project.task.kanban</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_kanban" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='tag_ids']" position="before">
+                <field name="user_ids"/>
+            </xpath>
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <div t-if="record.x_scheduled_start_date.raw_value or record.x_scheduled_start_date.raw_value" class="text-muted">
+                    <span class="fa fa-clock-o me-2" title="Dates"> تاریخ برنامه ای </span><field name="x_scheduled_start_date"/>
+                    <i t-if="record.x_scheduled_end_date.raw_value and record.x_scheduled_start_date.raw_value" class="fa fa-long-arrow-right mx-2 oe_read_only" aria-label="Arrow icon" title="Arrow"/>
+                    <field name="x_scheduled_end_date"/>
+                </div>
+                <field name="x_activity_progress"/>
+                <div t-if="record.x_actual_start_date.raw_value or record.x_actual_start_date.raw_value" class="text-muted">
+                    <span class="fa fa-clock-o me-2" title="Dates"> تاریخ واقعی</span><field name="x_actual_start_date"/>
+                    <i t-if="record.x_actual_end_date.raw_value and record.x_actual_start_date.raw_value" class="fa fa-long-arrow-right mx-2 oe_read_only" aria-label="Arrow icon" title="Arrow"/>
+                    <field name="x_actual_end_date"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- <record model="ir.ui.view" id="custom_view_task_form">
+        <field name="name">project.task.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2" />
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside"> -->
+                <!-- <group>
+                    <field name="x_budget_ceiling" />
+                    <field name="x_currency_id" />
+                </group> -->
+                <!-- <group>
+                    <field name="x_activity_progress" />
+                </group> -->
+                <!-- <group >
+                    <field name="x_scheduled_start_date" string="تاریخ برنامه ای" widget="daterange" options='{"end_date_field": "x_scheduled_end_date", "always_range": "1"}' required="x_scheduled_start_date or x_scheduled_end_date" />
+                    <field name="x_scheduled_end_date" invisible="1" required="x_scheduled_start_date"/>
+
+                    <field name="X_scheduled_duration" />
+                </group> -->
+                <!-- <group >
+                    <field name="x_actual_start_date" string="تاریخ واقعی" widget="daterange" options='{"end_date_field": "x_actual_end_date", "always_range": "1"}' required="x_actual_start_date or x_actual_end_date" />
+                    <field name="x_actual_end_date" invisible="1" required="x_actual_start_date"/>
+
+                    <field name="X_actual_duration" />
+                </group> -->
+            <!-- </xpath> -->
+            <!-- <xpath expr="//page[@name='extra_info']" position="after">
+                <page name="x_deliverableItem" string="اقلام قابل تحویل">
+                    <field name="x_deliverableItem" type="html" options="{'collaborative': true, 'resizable': true}" placeholder="اقلام مورد نظر را وارد نمایید ..."/>
+                </page>
+            </xpath> -->
+        <!-- </field>
+    </record> -->
+
+</odoo>

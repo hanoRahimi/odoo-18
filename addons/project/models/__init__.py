@@ -18,3 +18,8 @@ from . import res_config_settings
 from . import res_partner
 from . import digest_digest
 from . import ir_ui_menu
+from . import extended_project
+from . import extended_project_stage
+from . import extended_project_task
+from . import extended_project_task_type
+from . import extended_project_approval_wizard

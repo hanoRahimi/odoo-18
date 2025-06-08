@@ -18,7 +18,7 @@
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_value">
                                     <field name="task_count" nolabel="1"/>
-                                    <span class="fw-normal"> وظیفه‌ها</span>
+                                    <span class="fw-normal"> Tasks</span>
                                 </span>
                                 <span class="o_stat_value" invisible="done_task_count == 0">
                                     <field name="done_task_count" nolabel="1"/>

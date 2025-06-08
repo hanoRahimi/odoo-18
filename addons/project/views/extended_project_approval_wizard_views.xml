@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- <record id="view_project_approvalcode_confirm" model="ir.ui.view">
+        <field name="name">project.approvalcode.confirm.popup</field>
+        <field name="model">project.project</field>
+        <field name="arch" type="xml">
+            <form string="تصویب پروژه">
+                <group>
+                    <separator string="آیا از تصویب پروژه اطمینان دارید؟"/>
+                </group>
+                <footer>
+                    <button name="confirm_approvalcode" type="object" string="بله" class="btn-primary"/>
+                    <button string="خیر" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record> -->
+
+    <record id="view_project_approval_wizard_form" model="ir.ui.view">
+        <field name="name">project.approval.wizard.form</field>
+        <field name="model">project.approval.wizard.extended</field>
+        <field name="arch" type="xml">
+            <form string="تصویب پروژه">
+                <group>
+                    <!-- <separator string="آیا از تصویب پروژه اطمینان دارید؟"/> -->
+                    <div class="oe_title">
+                        <!-- <label string="">اختصاص کد تصویب</label> this also worked -->
+                        <div style="font-weight: bold;">
+                            پس از تصویب پروژه، کدی یکتای تصویب به پروژه اختصاص می یابد
+                        </div>
+                    </div>
+
+                </group>
+                <footer>
+                    <button name="confirm_approvalcode" type="object" string="بله" class="btn-primary"/>
+                    <button string="خیر" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

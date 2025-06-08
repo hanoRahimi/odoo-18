@@ -12,11 +12,15 @@
     'website': '',
     'depends': ['base','web', 'project'],
     'data': [
-        'views/project_project_views.xml'
+        # 'security/ir.model.access.csv',
+        'views/project_project_views.xml',
+        'views/project_task_views.xml',
+        'views/extended_project_approval_wizard_views.xml',
     ],
     'assets': {
         'web.assets_backend': [
             'custom_project/static/src/css/project_custom_styles.css',
+            'custom_project/static/src/css/form_field_border.css',
             'custom_project/static/src/scss/project_custom_scss.scss',
         ],
     },

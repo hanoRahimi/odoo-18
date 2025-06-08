@@ -41,6 +41,7 @@
                             <field name="active" invisible="1"/>
                             <field name="mail_template_id" context="{'default_model': 'project.project'}"/>
                             <field name="sequence" groups="base.group_no_one"/>
+                            <field name="x_stage_max_inprogress_percentage"/>
                         </group>
                         <group>
                             <field name="fold"/>

@@ -33,9 +33,15 @@
                              style="max-width: 300px; float: right; position: absolute; top: 50%; transform: translateY(-50%);">
                             <div class="card-body" style="background: hsla(216, 90.90%, 34.50%, 0.81); border-radius: 10px;">
                                 <div t-attf-class="text-center pb-3 border-bottom {{'mb-3' if form_small else 'mb-4'}}">
-                                    <img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}"
+                                    <div style="background-image: url('/web_login_styles/static/src/img/logo-home-page.png');
+                                        background-size: contain;
+                                        background-repeat: no-repeat;
+                                        background-position: center;
+                                        height: 120px;">
+                                    </div>
+                                    <!-- <img t-attf-src="C:\Users\acer\Downloads\odoo-18-main\odoo-18-main\cus_addons\web_login_styles\static\src\img\logo-home-page.png"
                                          alt="Logo"
-                                         style="max-height:120px; max-width: 100%; width:auto"/>
+                                         style="max-height:120px; max-width: 100%; width:auto"/> -->
                                 </div>
                                 <t t-out="0"/>
                                 <form class="oe_login_form" role="form"
@@ -104,15 +110,15 @@
                                         <t t-esc="message"/>
                                     </p>
                                     <div t-attf-class="clearfix oe_login_buttons text-center mb-1 {{'pt-2' if form_small else 'pt-3'}}">
-                                        <button type="submit"
+                                        <button type="submit" style="width: 100%; background-color: #007bff4d; border-color: #007bff4d"
                                                 class="btn btn-primary btn-block">
-                                            Log in
+                                            ورود
                                         </button>
                                         <t t-if="debug">
                                             <button type="submit"
                                                     name="redirect"
                                                     value="/web/become"
-                                                    class="btn btn-link btn-sm btn-block">
+                                                    class="btn btn-link btn-sm btn-block" style="color: #fff;">
                                                 Log in as superuser
                                             </button>
                                         </t>
@@ -124,7 +130,7 @@
                                 <div class="text-center small mt-4 pt-3 border-top"
                                      t-if="not disable_footer">
                                     <t t-if="not disable_database_manager">
-                                        <a class="border-right pr-2 mr-1"
+                                        <a class="border-right pr-2 mr-1" style="color: #fff;"
                                            href="/web/database/manager">Manage
                                             Databases
                                         </a>

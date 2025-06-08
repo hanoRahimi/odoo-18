@@ -22,6 +22,7 @@ registry.category("web_tour.tours").add('project_tour', {
     run: "click",
 },
 {
+    isActive: ["auto"],
     trigger: ".o_project_kanban",
 },
 {
@@ -51,6 +52,7 @@ registry.category("web_tour.tours").add('project_tour', {
     run: "click",
 },
 {
+    isActive: ["auto"],
     trigger: ".o_kanban_group",
 },
 {
@@ -65,6 +67,7 @@ registry.category("web_tour.tours").add('project_tour', {
     run: "click",
 },
 {
+    isActive: ["auto"],
     trigger: ".o_kanban_group:eq(1)",
 },
 {
@@ -74,6 +77,7 @@ registry.category("web_tour.tours").add('project_tour', {
     run: "click",
 },
 {
+    isActive: ["auto"],
     trigger: ".o_kanban_project_tasks",
 },
 {
@@ -83,6 +87,7 @@ registry.category("web_tour.tours").add('project_tour', {
     run: "edit Test",
 },
 {
+    isActive: ["auto"],
     trigger: ".o_kanban_project_tasks",
 },
 {
@@ -92,6 +97,7 @@ registry.category("web_tour.tours").add('project_tour', {
     run: "click",
 },
 {
+    isActive: ["auto"],
     trigger: ".o_kanban_project_tasks",
 },
 {
@@ -101,6 +107,7 @@ registry.category("web_tour.tours").add('project_tour', {
     run: "drag_and_drop(.o_kanban_group:eq(1))",
 },
 {
+    isActive: ["auto"],
     trigger: ".o_kanban_project_tasks",
 },
 {
@@ -110,32 +117,40 @@ registry.category("web_tour.tours").add('project_tour', {
     run: "click",
 },
 {
+    isActive: ["auto"],
     trigger: ".o_form_project_tasks",
 },
 {
-    trigger: ".o-mail-Chatter-topbar button.o-mail-Chatter-sendMessage",
+    trigger: ".o-mail-Chatter-topbar button:contains(Send message)",
     content: markup(_t("Use the chatter to <b>send emails</b> and communicate efficiently with your customers. Add new people to the followers' list to make them aware of the main changes about this task.")),
     tooltipPosition: "bottom",
     run: "click",
 },
 {
+    isActive: ["auto"],
     trigger: ".o_form_project_tasks",
 },
 {
-    trigger: "button.o-mail-Chatter-logNote",
+    trigger: "button:contains(Log note)",
     content: markup(_t("<b>Log notes</b> for internal communications <i>(the people following this task won't be notified of the note you are logging unless you specifically tag them)</i>. Use @ <b>mentions</b> to ping a colleague or # <b>mentions</b> to reach an entire team.")),
     tooltipPosition: "bottom",
     run: "click",
 },
 {
+    isActive: ["auto"],
     trigger: ".o_form_project_tasks",
 },
 {
-    trigger: ".o-mail-Chatter-topbar button.o-mail-Chatter-activity",
+    trigger: ".o-mail-Chatter-topbar button:contains(Activities)",
     content: markup(_t("Create <b>activities</b> to set yourself to-dos or to schedule meetings.")),
     tooltipPosition: "bottom",
     run: "click",
 },
+{
+    trigger: ".o_form_project_tasks",
+    isActive: ["auto"],
+},
+
 {
     trigger: ".o_form_project_tasks",
 },
@@ -147,6 +162,7 @@ registry.category("web_tour.tours").add('project_tour', {
 },
 {
     trigger: ".o_form_project_tasks",
+    isActive: ["auto"],
 },
 {
     isActive: ["auto"],
@@ -189,6 +205,7 @@ registry.category("web_tour.tours").add('project_tour', {
     run: "edit New Sub-task",
 },
 {
+    isActive: ["auto"],
     trigger: ".o_form_project_tasks .o_form_dirty",
 },
 {
@@ -199,6 +216,7 @@ registry.category("web_tour.tours").add('project_tour', {
     run: "click",
 },
 {
+    isActive: ["auto"],
     trigger: ".o_form_project_tasks",
 },
 {
@@ -213,6 +231,7 @@ registry.category("web_tour.tours").add('project_tour', {
     run: "click",
 },
 {
+    isActive: ["auto"],
     trigger: ".o_widget_subtask_kanban_list .subtask_list",
 },
 {
@@ -222,6 +241,7 @@ registry.category("web_tour.tours").add('project_tour', {
     run: "click",
 },
 {
+    isActive: ["auto"],
     trigger: ".subtask_create_input",
 },
 {
@@ -231,20 +251,19 @@ registry.category("web_tour.tours").add('project_tour', {
     run: "edit Newer Sub-task && click body",
 }, {
     isActive: ["auto"],
-    trigger: ".o_kanban_record .o_widget_subtask_kanban_list .subtask_list_row:contains(newer sub-task) .o_field_project_task_state_selection button",
+    trigger: ".o_kanban_record .o_widget_subtask_kanban_list .subtask_list_row:first-child .o_field_project_task_state_selection button",
     content: _t("You can change the sub-task state here!"),
     run: "click",
 },
 {
-    trigger: ".project_task_state_selection_menu.dropdown-menu",
+    isActive: ["auto"],
+    trigger: ".dropdown-menu",
 },
 {
     isActive: ["auto"],
-    trigger: ".project_task_state_selection_menu.dropdown-menu span.text-danger",
+    trigger: ".dropdown-menu span.text-danger",
     content: markup(_t("Mark the task as <b>Cancelled</b>")),
     run: "click",
-}, {
-    trigger: ".o-overlay-container:not(:visible):not(:has(.project_task_state_selection_menu))",
 }, {
     isActive: ["auto"],
     trigger: ".o_kanban_record .o_widget_subtask_counter .subtask_list_button:contains('1/2')",
