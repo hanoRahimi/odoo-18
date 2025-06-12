@@ -7,6 +7,7 @@ class Project(models.Model):
     partner_id = fields.Many2one('res.partner', string='شرکت', auto_join=True, tracking=True)
     budget = fields.Integer(string="بودجه لازم")
     create_date_only = fields.Date(string="Create Date Only", compute="_compute_create_date_only")
+    project_resource_description = fields.Html(string="منابع مصرفی پروژه")
 
     planned_progress = fields.Float(
             string="پیشرفت برنامه‌ای (%)",
@@ -20,6 +21,7 @@ class Project(models.Model):
         default=lambda self: self.env['project.project.stage'].search([('name', '=', 'شروع نشده')], limit=1),
         group_expand='_read_group_expand_full')
 
+    custodian = fields.Many2one('res.company', string="متولی")
 
     @api.depends('create_date')
     def _compute_create_date_only(self):

@@ -74,6 +74,10 @@
                             <field name="partner_id" widget="res_partner_many2one" invisible="1" />
                             
                             <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+
+                            <field name="x_studio_inprogress_percentage_1"/>                            
+                            <field name="display_approvalCode" readonly="1"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                         </group>
                         <group>
                             <field name="active" invisible="1"/>
@@ -83,10 +87,7 @@
                             <field name="date_start" string="تاریخ شروع برنامه ریزی شده" />
                             <!-- <field name="date" invisible="1" string="تاریخ پایان برنامه ریزی شده" required="date_start"/> -->
                             <field name="date" string="تاریخ پایان برنامه ریزی شده"/>
-                            <field name="x_studio_inprogress_percentage_1"/>
                             
-                            <field name="display_approvalCode" readonly="1"/>
-
                             <!-- <label for="date" string="SALAM DTAE"/> by rh -->
                             <!-- <field name="date" invisible="1" required="date_start"/> -->
 
@@ -94,9 +95,9 @@
                             <!-- <label for="allocated_hours" string="SALAM"/>
                             <field name="allocated_hours"/> -->
                         </group>
-                        <group>
+                        <!-- <group>
                             <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
-                        </group>
+                        </group> -->
                     </group>
                     <notebook>
                         <!-- <page name="description" string="Description"> by rh -->
@@ -326,7 +327,7 @@
             <field name="name">project.project.kanban</field>
             <field name="model">project.project</field>
             <field name="arch" type="xml">
-                <kanban class="o_kanban_mobile">
+                <kanban class="o_kanban_mobile" create="false">
                     <templates>
                         <t t-name="card">
                             <field name="name" class="fw-bolder" string="Project Name"/>
@@ -401,9 +402,7 @@
                 <kanban highlight_color="color"
                     class="o_project_kanban"
                     js_class="project_project_kanban"
-                    on_create="project.open_create_project"
-                    action="action_view_tasks" type="object"
-		            quick_create_view="project.quick_create_project_form"
+                    type="object"
                     sample="1"
                     default_order="create_date desc"
                 >

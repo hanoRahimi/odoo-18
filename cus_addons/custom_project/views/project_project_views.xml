@@ -25,6 +25,9 @@
             <xpath expr="//field[@name='tag_ids']" position="after">
                 <field name="budget" />
             </xpath>
+            <xpath expr="//field[@name='tag_ids']" position="before">
+                <field name="custodian" />
+            </xpath>
             <xpath expr="//field[@name='date']" position="after">
                 <field name="task_completion_percentage" string="درصد پیشرفت پروژه" widget="percentage" options="{'digits': [1, 0]}"/>
                 <!-- <field name="progres" /> -->
@@ -35,6 +38,11 @@
             </xpath>
             <xpath expr="//page[@name='description']" position="attributes">
                 <attribute name="string">شرح پروژه</attribute>
+            </xpath>
+            <xpath expr="//page[@name='description']" position="after">
+                <page name="resource_description" string="منابع مصرفی پروژه">
+                    <field name="project_resource_description" options="{'resizable': false}" placeholder="Project description Resource..." />
+                </page>
             </xpath>
             <xpath expr="//page[@name='settings']" position="after">
                 <page name="sale_factor" string="فاکتور فروش">
@@ -90,6 +98,7 @@
         <field name="inherit_id" ref="project.view_project" />
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_view_tasks']" position="before">
+                <field name="custodian" />
                 <field name="display_approvalCode" />
                 <field name="task_completion_percentage" string="درصد پیشرفت واقعی" widget="percentage" />
                 <field name="planned_progress" string="درصد پیشرفت برنامه ای" widget="percentage" />
